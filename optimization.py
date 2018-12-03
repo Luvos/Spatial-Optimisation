@@ -1,15 +1,9 @@
-
-# coding: utf-8
-
-# In[19]:
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 
  
 route = [0,1,2,3,4,5,0] #Initial root to be optimized
-# time matrix reprenting the it takes to travel between the cities 
+# time matrix representing the time it takes to travel between the cities 
 time_matrix = np.array([[0,72,100,215,116,166],
                       [72,0,155,214,78,108],
                       [100,155,0,151,204,240],
