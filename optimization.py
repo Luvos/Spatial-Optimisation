@@ -12,7 +12,7 @@ location5 = "16 Poort Road, Ladysmith, KwaZulu-Natal, South Africa"
 # A list of all locations  
 location = [location0,location1,location2,location3,location4,location5]
  
-route = [0,1,2,3,4,5,0] #indexes for Initial route to be optimized
+route = [0,1,2,3,4,5,0] #indexes for the route to be optimized
 # the 0 index is added at the end of the list to complete the route
 
 locations_route = dict(zip(location,route))# dictionary showing each location and its index
