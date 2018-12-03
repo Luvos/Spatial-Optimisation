@@ -1,9 +1,23 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+#locations for the route to be optimized
+location0 = "115 St Andrew’s Drive, Durban North, KwaZulu-Natal, South Africa"
+location1 = "67 Boshoff Street, Pietermaritzburg, KwaZulu-Natal, South Africa"
+location2 = "4 Paul Avenue, Fairview, Empangeni, KwaZulu-Natal, South Africa"
+location3 = "166 Kerk Street, Vryheid, KwaZulu-Natal, South Africa"
+location4 = "9 Margaret Street, Ixopo, KwaZulu-Natal, South Africa"
+location5 = "16 Poort Road, Ladysmith, KwaZulu-Natal, South Africa"
+
+# A list of all locations  
+location = [location0,location1,location2,location3,location4,location5]
  
-route = [0,1,2,3,4,5,0] #Initial root to be optimized
-# time matrix representing the time it takes to travel between the cities 
+route = [0,1,2,3,4,5,0] #indexes for Initial route to be optimized
+# the 0 index is added at the end of the list to complete the route
+
+locations_route = dict(zip(location,route))# dictionary showing each location and its index
+
+# time matrix reprenting the time it takes to travel between the cities 
 time_matrix = np.array([[0,72,100,215,116,166],
                       [72,0,155,214,78,108],
                       [100,155,0,151,204,240],
@@ -17,6 +31,7 @@ def path_time(time_matrix, route):
     for i in range(len(route)-1):
         time += time_matrix[route[i]][route[i+1]]
     return time
+
 # 2 opt swap method to manipulate the given route/change the root
 def Two_opt_swap(fields, i, k):
     start = fields[0:i]
@@ -31,7 +46,6 @@ n = len(route)
 i = 1
 
 Init_time = path_distance(time_matrix,route)#initial time for the initial route
-best_route = route
 best_time = Init_time
 
 while i < n:
@@ -52,6 +66,10 @@ while i < n:
                             best_time = new_time 
                         else:
                             i += 1
-                
-print("optimal time =", best_time, "optimal route =", route)
 
+best_route_dict = {i: location[i] for i in route}
+route_addresses = best_route_dict.values()
+best_path = list(route_addresses)
+best_path.append(best_path[0]) # adding the initial location as the end point of the route
+print("optimal time =", best_time,"minutes", "Or", best_time//60,"hrs",(best_time%60), "minutes")
+print("optimal route =", best_path)
