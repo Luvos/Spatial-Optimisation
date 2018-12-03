@@ -53,5 +53,5 @@ while i < n:
                         else:
                             i += 1
                 
-print("optimal time =", best_distance, "optimal route =", route)
+print("optimal time =", best_time, "optimal route =", route)
 
